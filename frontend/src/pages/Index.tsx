@@ -42,7 +42,7 @@ const Index = () => {
           Per-second laptop micro-insurance powered by gasless USDC micropayments.
         </p>
         <p className="text-[#555555] text-base mb-12">
-          Insure your device by the second — pay only when you need coverage.
+          Insure your device by the second - pay only when you need coverage.
         </p>
 
         {/* Access cards */}
@@ -115,7 +115,7 @@ const Index = () => {
                 <span className="text-xs uppercase tracking-widest text-[#888888]">Two Coverage Modes</span>
               </div>
               <p className="text-[#555555] text-sm leading-relaxed">
-                Active use or idle storage — different rates to match your laptop's real-time risk profile.
+                Active use or idle storage - different rates to match your laptop's real-time risk profile.
               </p>
             </div>
 

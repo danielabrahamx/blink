@@ -1,4 +1,4 @@
-# Paramify — Per-Second Laptop Insurance
+# Blink - Per-Second Laptop Insurance
 
 > Gasless micro-insurance for laptops, paid by the second using x402 on Arc Testnet.
 
@@ -8,7 +8,7 @@ Built for the **Circle Hackathon** · Arc Testnet · x402 Protocol · Circle Dev
 
 ## What It Does
 
-Paramify lets anyone insure their laptop **by the second** — no sign-up, no annual premium, no paperwork. You pay only for the exact seconds you're covered.
+Blink lets anyone insure their laptop **by the second** - no sign-up, no annual premium, no paperwork. You pay only for the exact seconds you're covered.
 
 | Mode | Rate | Use case |
 |------|------|----------|
@@ -16,6 +16,29 @@ Paramify lets anyone insure their laptop **by the second** — no sign-up, no an
 | **Idle / Stored** | $0.001 / second | Laptop in storage or transit |
 
 Every second of coverage is a real USDC micropayment over the **x402 protocol** on Arc Testnet. The insurance reserve pool is managed by the admin via **Circle Developer-Controlled Wallets**.
+
+---
+
+
+## Screenshots
+
+<div align="center">
+  <img src="docs/screenshots/landing-page.png" alt="Landing Page" style="border: 1px solid #333; border-radius: 8px; margin-bottom: 20px;" />
+</div>
+
+<div align="center">
+  <img src="docs/screenshots/policy-active.png" width="48%" alt="Policy Active" style="border: 1px solid #333; border-radius: 8px; margin-right: 2%; margin-bottom: 20px;" />
+  <img src="docs/screenshots/policy-complete.png" width="48%" alt="Policy Complete" style="border: 1px solid #333; border-radius: 8px; margin-bottom: 20px;" />
+</div>
+<div align="center">
+  <em>Real-time 5-second streaming policy via x402 gateway</em>
+</div>
+<br />
+
+<div align="center">
+  <img src="docs/screenshots/admin-portal.png" alt="Admin Portal" style="border: 1px solid #333; border-radius: 8px; margin-bottom: 20px;" />
+  <p><em>Admin Portal - Staking USYC reserves and managing claims via Circle Developer Wallets</em></p>
+</div>
 
 ---
 
@@ -34,14 +57,14 @@ User                          Backend (x402)             Circle Dev Wallet
  └── policy complete               │                            │
                                    │                            │
 Admin                              │                            │
- ├── deposit USYC reserve ─────────────────────────────────────►│
+ ├── deposit & stake USYC reserve ──────────────────────────────►│
  └── trigger claim payout ─────────────────────────────────────►│ USDC → user
 ```
 
 1. **User** deposits USDC into their x402 Gateway wallet
 2. They select a mode (Active / Idle), set a duration, and click **Start Policy**
-3. Every second, the frontend fires a paid request to the backend — each request is a self-contained x402 micropayment
-4. **Admin** deposits USYC into the reserve pool and triggers USDC claim payouts for verified losses
+3. Every second, the frontend fires a paid request to the backend - each request is a self-contained x402 micropayment
+4. **Admin** deposits USYC into the reserve pool (which they have the ability to stake) and triggers USDC claim payouts for verified losses
 
 ---
 
@@ -88,7 +111,7 @@ npm run dev
 1. Open the app → click **User Portal**
 2. Click **Deposit 1 USDC to Gateway** to fund your gateway wallet
 3. Set duration (e.g. 5 seconds), choose Active or Idle mode
-4. Click **Start Policy** — watch per-second payments stream in real time with live balance updates
+4. Click **Start Policy** - watch per-second payments stream in real time with live balance updates
 5. Copy your buyer address, switch to **Admin Portal**, paste into "Trigger Claim Payout" to send USDC back as a claim
 
 ---
@@ -97,13 +120,13 @@ npm run dev
 
 | Method | Path | Auth | Description |
 |--------|------|------|-------------|
-| `GET` | `/api/health` | — | Service health check |
-| `GET` | `/api/status` | — | Contract pool balances |
+| `GET` | `/api/health` | - | Service health check |
+| `GET` | `/api/status` | - | Contract pool balances |
 | `GET` | `/api/insure/active` | x402 $0.0005 | Active-use coverage tick |
 | `GET` | `/api/insure/idle` | x402 $0.001 | Idle/stored coverage tick |
-| `GET` | `/api/balance/:address` | — | USDC + USYC balance |
-| `POST` | `/api/admin/deposit-reserve` | — | Deposit USYC to reserve |
-| `POST` | `/api/admin/trigger-claim` | — | Send USDC claim to user |
+| `GET` | `/api/balance/:address` | - | USDC + USYC balance |
+| `POST` | `/api/admin/deposit-reserve` | - | Deposit USYC to reserve |
+| `POST` | `/api/admin/trigger-claim` | - | Send USDC claim to user |
 
 ---
 
