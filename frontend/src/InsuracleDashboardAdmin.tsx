@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Laptop, Wallet, AlertCircle, CheckCircle, ArrowLeft, RefreshCw, Shield, AlertTriangle } from 'lucide-react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 
 interface ParamifyDashboardProps {
   setUserType?: (userType: string | null) => void;

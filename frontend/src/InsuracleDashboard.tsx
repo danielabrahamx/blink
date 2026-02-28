@@ -3,7 +3,7 @@ import { Laptop, Shield, Wallet, AlertCircle, CheckCircle, ArrowLeft, Power, Cop
 import { getGatewayClient } from './lib/gatewayClient';
 import type { Balances, PayResult } from '@circlefin/x402-batching/client';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 
 // Internal rate constants - NOT shown in UI
 const ACTIVE_RATE = 0.000005;
