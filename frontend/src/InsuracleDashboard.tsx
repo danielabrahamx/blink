@@ -318,7 +318,7 @@ export default function InsuracleDashboard({ setUserType }: InsuracleDashboardPr
                   >
                     <Laptop className="h-4 w-4 shrink-0" />
                     <div>
-                      <div className="text-sm font-medium">Active Use</div>
+                      <div className="text-sm font-medium">At Desk</div>
                     </div>
                   </button>
                   <button
@@ -331,7 +331,7 @@ export default function InsuracleDashboard({ setUserType }: InsuracleDashboardPr
                   >
                     <Power className="h-4 w-4 shrink-0" />
                     <div>
-                      <div className="text-sm font-medium">Idle / Stored</div>
+                      <div className="text-sm font-medium">Away</div>
                     </div>
                   </button>
                 </div>
@@ -349,7 +349,7 @@ export default function InsuracleDashboard({ setUserType }: InsuracleDashboardPr
                 </div>
                 <div className="flex justify-between px-4 py-3 text-sm">
                   <span className="text-[#555555]">Mode</span>
-                  <span className="font-dm-mono text-[#cccccc] capitalize">{selectedMode}</span>
+                  <span className="font-dm-mono text-[#cccccc]">{selectedMode === 'active' ? 'At Desk' : 'Away'}</span>
                 </div>
                 <div className="flex justify-between px-4 py-3 text-sm">
                   <span className="text-[#666666]">Premium</span>
@@ -391,7 +391,7 @@ export default function InsuracleDashboard({ setUserType }: InsuracleDashboardPr
                   <span className="text-2xl text-[#2a2a2a] ml-1">s</span>
                 </div>
                 <div className="text-xs uppercase tracking-widest text-[#444444] mt-3 font-dm-mono">
-                  {selectedMode} mode · ${rate}/s
+                  {selectedMode === 'active' ? 'at desk' : 'away'} mode · ${rate}/s
                 </div>
               </div>
 
@@ -417,7 +417,7 @@ export default function InsuracleDashboard({ setUserType }: InsuracleDashboardPr
                   <div className="bg-[#0a160a] border border-[#1a3a1a] px-4 py-3">
                     <p className="text-green-400 text-sm font-medium">Policy complete</p>
                     <p className="text-[#555555] text-xs mt-1 font-dm-mono">
-                      {paymentReceipts.length} payments · {duration}s · {selectedMode}
+                      {paymentReceipts.length} payments · {duration}s · {selectedMode === 'active' ? 'at desk' : 'away'}
                     </p>
                   </div>
                   <button
@@ -450,7 +450,7 @@ export default function InsuracleDashboard({ setUserType }: InsuracleDashboardPr
                         ? 'border-[#e8a020]/30 text-[#e8a020]'
                         : 'border-[#555555]/30 text-[#555555]'
                     }`}>
-                      {receipt.mode}
+                      {receipt.mode === 'active' ? 'at desk' : 'away'}
                     </span>
                   </div>
                   <span className="font-dm-mono text-xs text-[#333333] truncate max-w-[120px]">
