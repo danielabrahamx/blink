@@ -27,7 +27,7 @@ Every second of coverage is a real USDC micropayment over the **x402 protocol** 
 </div>
 
 <div align="center">
-  <img src="docs/screenshots/policy-active.png" width="48%" alt="Policy Active" style="border: 1px solid #333; border-radius: 8px; margin-right: 2%; margin-bottom: 20px;" />
+  <img src="docs/screenshots/policy-active.png" width="48%" alt="Policy Running" style="border: 1px solid #333; border-radius: 8px; margin-right: 2%; margin-bottom: 20px;" />
   <img src="docs/screenshots/policy-complete.png" width="48%" alt="Policy Complete" style="border: 1px solid #333; border-radius: 8px; margin-bottom: 20px;" />
 </div>
 <div align="center">
@@ -62,7 +62,7 @@ Admin                              │                            │
 ```
 
 1. **User** deposits USDC into their x402 Gateway wallet
-2. They select a mode (Active / Idle), set a duration, and click **Start Policy**
+2. They select a mode (At Desk / Away), set a duration, and click **Start Policy**
 3. Every second, the frontend fires a paid request to the backend - each request is a self-contained x402 micropayment
 4. **Admin** deposits USYC into the reserve pool (which they have the ability to stake) and triggers USDC claim payouts for verified losses
 
@@ -110,7 +110,7 @@ npm run dev
 
 1. Open the app → click **User Portal**
 2. Click **Deposit 1 USDC to Gateway** to fund your gateway wallet
-3. Set duration (e.g. 5 seconds), choose Active or Idle mode
+3. Set duration (e.g. 5 seconds), choose At Desk or Away mode
 4. Click **Start Policy** - watch per-second payments stream in real time with live balance updates
 5. Copy your buyer address, switch to **Admin Portal**, paste into "Trigger Claim Payout" to send USDC back as a claim
 
