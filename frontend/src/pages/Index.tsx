@@ -115,7 +115,7 @@ const Index = () => {
                 <span className="text-xs uppercase tracking-widest text-[#888888]">Two Coverage Modes</span>
               </div>
               <p className="text-[#555555] text-sm leading-relaxed">
-                Active use or idle storage - different rates to match your laptop's real-time risk profile.
+                At desk or away - different rates to match your laptop's real-time risk profile.
               </p>
             </div>
 
