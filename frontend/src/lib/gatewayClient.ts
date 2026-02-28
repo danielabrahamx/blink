@@ -7,6 +7,7 @@ export function getGatewayClient(): GatewayClient {
     client = new GatewayClient({
       chain: 'arcTestnet',
       privateKey: import.meta.env.VITE_BUYER_PRIVATE_KEY as `0x${string}`,
+      ...(import.meta.env.VITE_RPC_URL ? { rpcUrl: import.meta.env.VITE_RPC_URL } : {}),
     });
   }
   return client;

@@ -134,19 +134,21 @@ app.get('/api/balance/:address', async (req, res) => {
     if (!ethers.isAddress(address)) {
       return res.status(400).json({ error: 'Invalid address' });
     }
-    const rpcProvider = new ethers.JsonRpcProvider(ARC_RPC_URL);
-    const usdcContract = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, rpcProvider);
-    const usycContract = new ethers.Contract(USYC_ADDRESS, ERC20_ABI, rpcProvider);
 
-    const [usdcBalance, usycBalance] = await Promise.all([
-      usdcContract.balanceOf(address),
-      usycContract.balanceOf(address),
-    ]);
-
-    res.json({
-      usdc: ethers.formatUnits(usdcBalance, 6),
-      usyc: ethers.formatUnits(usycBalance, 6),
+    // Use Circle API for the admin wallet (RPC USDC precompile doesn't support balanceOf)
+    const { initiateDeveloperControlledWalletsClient } = require('@circle-fin/developer-controlled-wallets');
+    const circleClient = initiateDeveloperControlledWalletsClient({
+      apiKey: process.env.CIRCLE_API_KEY,
+      entitySecret: process.env.CIRCLE_ENTITY_SECRET,
     });
+
+    const balRes = await circleClient.getWalletTokenBalance({ id: process.env.CIRCLE_WALLET_ID });
+    const tokenBalances = balRes.data?.tokenBalances || [];
+
+    const usdc = tokenBalances.find(t => t.token?.symbol === 'USDC')?.amount || '0';
+    const usyc = tokenBalances.find(t => t.token?.symbol === 'USYC')?.amount || '0';
+
+    res.json({ usdc, usyc });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
