@@ -57,9 +57,9 @@ const gateway = createGatewayMiddleware({
 
 // --- x402 Paid Endpoints ---
 
-// GET /api/insure/active - per-second active-use laptop insurance ($0.0005/s)
-app.get('/api/insure/active', gateway.require('$0.0005'), (req, res) => {
-  totalPremiumsUsdc += 0.0005;
+// GET /api/insure/active - per-second active-use laptop insurance ($0.000005/s)
+app.get('/api/insure/active', gateway.require('$0.000005'), (req, res) => {
+  totalPremiumsUsdc += 0.000005;
   res.json({
     covered: true,
     mode: 'active',
@@ -72,9 +72,9 @@ app.get('/api/insure/active', gateway.require('$0.0005'), (req, res) => {
   });
 });
 
-// GET /api/insure/idle - per-second idle/stored laptop insurance ($0.001/s)
-app.get('/api/insure/idle', gateway.require('$0.001'), (req, res) => {
-  totalPremiumsUsdc += 0.001;
+// GET /api/insure/idle - per-second idle/stored laptop insurance ($0.00001/s)
+app.get('/api/insure/idle', gateway.require('$0.00001'), (req, res) => {
+  totalPremiumsUsdc += 0.00001;
   res.json({
     covered: true,
     mode: 'idle',

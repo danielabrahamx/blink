@@ -12,8 +12,8 @@ Blink lets anyone insure their laptop **by the second** - no sign-up, no annual 
 
 | Mode | Rate | Use case |
 |------|------|----------|
-| **Active Use** | $0.0005 / second | Laptop in use |
-| **Idle / Stored** | $0.001 / second | Laptop in storage or transit |
+| **Active Use** | $0.000005 / second | Laptop in use |
+| **Idle / Stored** | $0.00001 / second | Laptop in storage or transit |
 
 Every second of coverage is a real USDC micropayment over the **x402 protocol** on Arc Testnet. The insurance reserve pool is managed by the admin via **Circle Developer-Controlled Wallets**.
 
@@ -51,7 +51,7 @@ User                          Backend (x402)             Circle Dev Wallet
  │                                 │                            │
  ├── start policy (5s active) ────►│                            │
  │   ┌─ per-second payment loop ──►│                            │
- │   │  $0.0005 x402 payment/sec   │ verifies + settles         │
+ │   │  $0.000005 x402 payment/sec  │ verifies + settles         │
  │   └─ repeat for N seconds       │                            │
  │                                 │                            │
  └── policy complete               │                            │
@@ -122,8 +122,8 @@ npm run dev
 |--------|------|------|-------------|
 | `GET` | `/api/health` | - | Service health check |
 | `GET` | `/api/status` | - | Contract pool balances |
-| `GET` | `/api/insure/active` | x402 $0.0005 | Active-use coverage tick |
-| `GET` | `/api/insure/idle` | x402 $0.001 | Idle/stored coverage tick |
+| `GET` | `/api/insure/active` | x402 $0.000005 | Active-use coverage tick |
+| `GET` | `/api/insure/idle` | x402 $0.00001 | Idle/stored coverage tick |
 | `GET` | `/api/balance/:address` | - | USDC + USYC balance |
 | `POST` | `/api/admin/deposit-reserve` | - | Deposit USYC to reserve |
 | `POST` | `/api/admin/trigger-claim` | - | Send USDC claim to user |
